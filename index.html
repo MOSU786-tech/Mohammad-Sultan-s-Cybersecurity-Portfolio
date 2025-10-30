@@ -4,11 +4,11 @@
         <title>Mohammad Sultan</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="script.js" defer></script>
+        <!-- Script is now loaded at the end of the body -->
     </head>
     <body>
 
-        <!-- New and Improved Navbar Header -->
+        <!-- Navbar Header -->
         <header class="navbar">
             <div class="navbar-brand">
                 <a href="#">Mohammad Sultan</a>
@@ -17,7 +17,6 @@
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
                 <a href="#connect">Contact</a>
-                <!-- New Theme Toggle Button -->
                 <button id="theme-button">Toggle Light Mode</button>
             </nav>
         </header>
@@ -55,7 +54,6 @@
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/Lqu-G7sqClA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <!-- Link updated to GitHub -->
                     <a href="https://github.com/MOSU786-tech/Mohammad-Sultan-s-Cybersecurity-Portfolio/blob/main/Android%20Kali%20Nethunter%20Install%20-%20Android%2015.pdf" class="button" target="_blank">Download PDF Instructions</a>
 
                     <hr class="project-divider">
@@ -72,7 +70,7 @@
                 </div>
             </div>
 
-             <!-- Contact & Links Section -->
+             <!-- Contact Links Section (Existing) -->
             <div id="connect" class="section links">
                 <div class="links-inner-box">
                     <h2>Let's Connect</h2>
@@ -80,6 +78,38 @@
                     <a href="https://www.linkedin.com/in/mohammad786sultan" target="_blank">LinkedIn</a>
                 </div>
             </div>
+
+            <!-- NEW: Contact Form Section -->
+            <div id="contact-form-section" class="section">
+                <h2>Let's Chat!</h2> <!-- Updated Heading -->
+                <div class="contact-container">
+                    <div class="contact-para">
+                        <p>Interested in collaborating or have a question? Feel free to reach out using the form below. I'm always open to discussing cybersecurity, new technologies, or potential opportunities.</p>
+                    </div>
+                    <div class="message-log">
+                        <h4>Message Log:</h4>
+                         <p><em>Still Witing!!!.</em></p>
+                    </div>
+                </div>
+
+                <!--- Contact Form --->
+                <div class="form-container">
+                    <form id="contact-form" title="contact-form">
+                        <!-- Step 2: Add form inputs -->
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+
+                        <label for="userMessage">Message:</label>
+                        <textarea id="userMessage" name="userMessage" rows="4" required></textarea>
+                    </form>
+                    <!-- Submit button -->
+                    <button type="submit" form="contact-form" id="submit-button">Send Message</button>
+                </div>
+            </div>
+             <!-- End of NEW Contact Form Section -->
 
         </main>
         <!-- Correct placement for the script link -->
