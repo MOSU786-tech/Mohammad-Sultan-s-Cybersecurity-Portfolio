@@ -13,14 +13,15 @@ html {
 /* --- Default (Dark) Mode Styles --- */
 body {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('connect.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('hero-background.png');
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #a8d6d6;
+    background-color: white;
+    backface-visibility: visible;
     font-family: 'Times New Roman', Times, serif;
-    color: white;
+    color: aqua;
     font-size: 18px;
     text-shadow: 1px 1px 3px #000;
     transition: background-color 0.3s, color 0.3s;
@@ -37,8 +38,8 @@ body {
     top: 0;
     z-index: 1000;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('connect.jpg');
-    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-background.png');
+    background-size: contain;
     background-position: center;
     transition: background-color 0.3s, border-color 0.3s;
 }
@@ -61,7 +62,7 @@ body {
 }
 
 .navbar-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(33, 235, 235, 0.289);
 }
 
 #theme-button {
@@ -204,7 +205,7 @@ body {
     font-size: 16px;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.03s, color 0.03s;
 }
 
 .button:hover {
@@ -212,7 +213,7 @@ body {
 }
 
 .links-inner-box {
-    max-width: 480px;
+    max-width: 400px;
     margin: 0 auto;
     padding: 40px 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -223,14 +224,14 @@ body {
     background-repeat: no-repeat;
     background-position: center; 
     transition: border-color 0.3s;
-      text-align: center; /* This is the new line to center the text */
+    text-align: center; /* This is the new line to center the text */
 }
 
 .links a {
-    color: hsl(181, 73%, 69%);
+    color: hsl(0, 0%, 98%);
     text-decoration: none;
-    margin: 0 25px;
-    font-size: 1.8em;
+    margin: 0 20px;
+    font-size: 1.2em;
     transition: color 0.3s;
 }
 
@@ -240,32 +241,39 @@ body {
 
 /* --- Contact Form Section (Adapted from RSVP) --- */
 .contact-container {
-    display: flex; /* Step 1B: Use Flexbox */
-    flex-direction: row; /* Step 1B: Arrange items horizontally */
-    gap: 20px; /* Step 1B: Add space between items */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     width: 100%;
-    padding-bottom: 50px; /* Step 1B: Space below the container */
-    text-align: left; /* Ensure text inside aligns left */
+    padding-bottom: 50px;
+    text-align: left;
 }
 
 .contact-para {
-    width: 55%; /* Step 1B: Assign width */
-    padding-right: 10px; /* Step 1B: Add padding */
+    width: 55%;
+    padding-right: 10px;
 }
 
 .message-log {
-    width: 45%; /* Step 1B: Assign width */
-    padding: 15px; /* Keep existing padding */
+    width: 45%;
+    padding: 15px;
     border: 1px dashed rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     min-height: 100px;
-    max-height: 250px; /* Add max height */
-    overflow-y: auto; /* Add scrollbar if content overflows */
+    max-height: 250px;
+    overflow-y: auto;
 }
 
 .message-log h4 {
     margin-bottom: 10px;
     color: #ADD8E6;
+}
+
+/* Style for the default messages */
+.default-message {
+    font-style: italic;
+    color: #aaa; /* A lighter gray to look like placeholder text */
+    margin-bottom: 5px;
 }
 
 .form-container {
@@ -277,7 +285,7 @@ body {
     flex-direction: column;
     gap: 15px;
     max-width: 600px;
-    margin: 0 auto 20px auto; /* Center form and add space below button */
+    margin: 0 auto 20px auto;
     text-align: left;
 }
 
@@ -293,30 +301,126 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1em;
-    background-color: #7f8181; /* Darker input background */
-    color: white; /* Light input text */
+    background-color: #7f8181;
+    color: white;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
-/* Specific style for the submit button */
 #submit-button {
     background-color: aquamarine;
     color: rgb(5, 5, 5);
     border: none;
-    padding: 12px 25px; /* Slightly larger padding */
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    align-self: center; /* Center button within its container */
+    align-self: center;
 }
 
 #submit-button:hover {
     background-color:aqua;
 }
+
+/* --- Style for the custom error message --- */
+.error-message {
+    color: #FF6B6B; /* A bright, visible red */
+    font-size: 0.9em;
+    font-style: italic;
+    /* Negative margin pulls it closer to the input box above it */
+    margin-top: -10px; 
+    margin-bottom: 5px;
+    display: block; /* Ensures it sits on its own line */
+}
+
+/* --- Form Validation Styling --- */
+.error {
+  border-color: red !important; /* Use !important to override other border styles */
+  background-color: red !important; /* Full red background */
+  color: rgb(222, 11, 11) !important; /* Ensure text is white and readable */
+}
 /* --- End of Contact Form Section Styles --- */
 
+/* --- the main challenge--- */
+
+#success-modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-item {
+/* Style individual elements within the modal */
+    flex: 1; /* Make items share the space equally */
+    padding: 10px;
+}
+/* --- Light Mode Styles --- */
+
+/* Style for the image in the modal */
+#modal-image {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+}
+
+.modal-container {
+/* Change modal size and spacing here */
+     padding: 50px;
+     width: 55%;
+
+     /* customize modal style here */
+     background-color: lightsteelblue;
+     color: black;
+     text-align: center;
+     font-size: 1rem;
+     font-family: monospace;
+     border-radius: 15px; /* Added a radius to match your site's style */
+
+/* Use flexbox to customize .modal-item Layout */
+     display: flex;
+     align-items: center; /* Vertically center the text and image */
+}
+
+.modal-item {
+/* Style individual elements within the modal */
+    flex: 1; /* Make items share the space equally */
+    padding: 10px;
+}
+/* Style for the image in the modal */
+#modal-image {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+}
+/* --- End of Success Modal Styles --- */
+
+/* --- NEW: Step 6 Modal Button Style --- */
+
+#close-modal-btn {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: black;
+    border: 1px solid black;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Add space above the button */
+}
+
+#close-modal-btn:hover {
+    background-color: rgba(138, 201, 212, 0.4);
+}
+
+/* --- End of Success Modal Styles --- */
 
 /* --- Light Mode Styles --- */
+
 body.light-mode {
     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('hero-background.jpg');
     background-color: #f0f0f0;
@@ -418,3 +522,14 @@ body.light-mode {
      background-color: #0056b3;
 }
 
+/* Light mode for error class */
+.light-mode .error {
+  border-color: red !important;
+  background-color: red !important; /* Full red background */
+  color: white !important; /* Ensure text is white and readable */
+}
+
+/* Light mode for the custom error message */
+.light-mode .error-message {
+    color: #D90429; /* A darker, stronger red for light backgrounds */
+}
