@@ -38,6 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Light Mode Toggle Logic (Existing Code) ---
     const themeButton = document.getElementById("theme-button");
+    const modal = document.getElementById("success-modal");
+const reduceMotionBtn = document.getElementById("reduce-motion-btn");
+const closeModalBtn = document.getElementById("close-modal-btn");
+
+let motionEnabled = true;
+let intervalId = null;
+
+    // --- NEW: Step 5-A Animation Variables ---
+    const modalImage = document.getElementById("modal-image");
+    let rotateFactor = 0;
+
     const toggleLightMode = () => {
         document.body.classList.toggle("light-mode");
         if (document.body.classList.contains("light-mode")) {
@@ -46,73 +57,183 @@ document.addEventListener('DOMContentLoaded', function() {
             themeButton.textContent = "Toggle Light Mode";
         }
     };
-    if (themeButton) {
+     if (themeButton) {
         themeButton.addEventListener("click", toggleLightMode);
     }
+    
+    // --- NEW: Stretch Goal (Step 4) - Initialize Counter ---
+    // Start count at 3 to match the default messages in the HTML
+    let messageCount = 3;
+    let defaultMessagesRemoved = false; // Flag to track if we've removed the defaults
 
-    // --- Form Handling Logic ---
-
-    // Step 1: Query for the submit button (Already done in previous version)
-    const submitButton = document.getElementById("submit-button");
+    // --- Form Handling Logic (Existing Code) ---
     const contactForm = document.getElementById("contact-form"); // Get the form itself
 
-    const addMessage = (event) => {
-        event.preventDefault(); // Prevents the default form submission which reloads the page
+    const addMessage = (person) => { // UPDATED: Now accepts the 'person' object
 
-        // Step 2: Get values from the form inputs
-        const nameInput = document.getElementById('userName');
-        const messageInput = document.getElementById('userMessage');
-        // We don't display the email, but you could get it here if needed:
-        // const emailInput = document.getElementById('userEmail');
+    // UPDATED: Get values directly from the person object
+    const name = person.name ? person.name : 'Anonymous';
+    const message = person.message ? person.message : 'No message.';
 
-        // Get the actual text values, providing defaults if inputs are somehow missing
-        const name = nameInput ? nameInput.value.trim() : 'Anonymous'; // .trim() removes extra whitespace
-        const message = messageInput ? messageInput.value.trim() : 'No message.';
+    const messageLog = document.querySelector(".message-log");
+    const newMessage = document.createElement("p");
+    newMessage.textContent = `💬 From ${name}: ${message}`;
 
-        // Basic check: Make sure name and message aren't empty
-        if (!name || !message) {
-            alert('Please fill out both Name and Message fields.'); // Use a more user-friendly notification in a real app
-            return; // Stop the function if fields are empty
-        }
+    // --- Logic to remove default messages ---
+    if (!defaultMessagesRemoved) {
+        const defaultMessages = messageLog.querySelectorAll(".default-message");
+        defaultMessages.forEach(msg => msg.remove());
+        defaultMessagesRemoved = true; 
+    }
 
-        // Find the message log container
-        const messageLog = document.querySelector(".message-log");
+    messageLog.appendChild(newMessage);
+    
+    // --- Update Counter ---
+    messageCount = messageCount + 1; 
+    const countElement = document.getElementById("message-count");
+    if (countElement) {
+        countElement.textContent = "Total Messages: " + messageCount; 
+    }
+};
+// --- NEW: Step 5-A Animation Function ---
+    const animateImage = () => {
+// Use the ternary operator to flip the rotation
+// If rotateFactor is 0, set it to -10. Otherwise, set it to 0.
+   rotateFactor = rotateFactor === 0 ? -10 : 0;
 
-        // Create a new paragraph element for the message
-        const newMessage = document.createElement("p");
+    // Apply the rotation style to the image
+    modalImage.style.transform = `rotate(${rotateFactor}deg)`;
+};
+// --- End of new function ---
 
-        // Set its text content using the captured name and message
-        newMessage.textContent = `💬 From ${name}: ${message}`; // Template literal for easy formatting
+// --- NEW: Step 7 reduceMotion Function ---
+const reduceMotion = () => {
+    // Toggle the motion setting
+    motionEnabled = !motionEnabled;
+    
+    if (motionEnabled) {
+        reduceMotionBtn.textContent = "Reduce Motion";
+        // Re-enable smooth scrolling
+        document.documentElement.style.scrollBehavior = "smooth";
+    } else {
+        reduceMotionBtn.textContent = "Enable Motion";
+        // Disable smooth scrolling
+        document.documentElement.style.scrollBehavior = "auto";
+    }
+};
+// --- End of new function ---
 
-        // Remove the "Still Waiting!!!" placeholder if it exists
-        const placeholder = messageLog.querySelector("p em");
-        if (placeholder) {
-            placeholder.remove();
-        }
+// --- Function to show the modal (UPDATED) ---
+const toggleModal = (person) => {
+    const modalText = document.getElementById("modal-text");
+    modalText.textContent = `Thanks, ${person.name}! Your message has been received.`;
 
-        // Add the new message to the log
-        messageLog.appendChild(newMessage);
+    modal.style.display = "flex";
 
-        // Clear the form fields after successful submission
-        if(contactForm) {
-            contactForm.reset();
-        }
+    // FIX: Stop any previous animation before starting a new one
+    clearInterval(intervalId);
+
+    // Only start the animation if motion is enabled
+    if (motionEnabled) {
+        intervalId = setInterval(animateImage, 500);
+    }
+
+    setTimeout(() => {
+        clearInterval(intervalId);
+        modal.style.display = "none";
+    }, 5000);
+};
+    // --- Form Validation ---
+    
+  const validateForm = (event) => {
+    event.preventDefault(); // Stop the form from submitting
+
+    let containsErrors = false;
+    var contactInputs = document.getElementById("contact-form").elements;
+
+    // --- STEP 1-A: Create the person object using the elements array ---
+    // [0] is Name, [1] is Email, [2] is Message
+    let person = {
+        name: contactInputs[0].value,
+        email: contactInputs[1].value,
+        message: contactInputs[2].value
     };
 
-    // Step 3: Add event listener to the submit button (Already done in previous version)
-    // Note: We listen on the FORM's 'submit' event, which is better practice than listening on the button's 'click'
-    if (contactForm) {
-         // Instead of listening to the button click, listen to the form's submit event
-        contactForm.addEventListener("submit", addMessage);
+    // Get error span elements so we can show messages
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+    const messageError = document.getElementById("message-error");
+
+    // --- Refactored Validation using the 'person' object ---
+    
+    // 1. Validate Name
+    if (person.name.length < 2) {
+        containsErrors = true;
+        contactInputs[0].classList.add("error");
+        nameError.textContent = "Name must be at least 2 characters.";
+    } else {
+        contactInputs[0].classList.remove("error");
+        nameError.textContent = "";
     }
-     // Clean up: Remove the old button click listener if it exists
-     // (If you updated from the previous script version, this ensures no double submissions)
-     if (submitButton) {
-        // Find if the listener was previously attached and remove it
-        // Note: For simplicity here, we assume the previous script might have added it.
-        // A more robust solution involves managing listeners more carefully.
-        // submitButton.removeEventListener("click", addMessage); // You might not need this line depending on previous code
-     }
 
+    // 2. Validate Email (using person.email)
+    if (!person.email.includes("@")) {
+        containsErrors = true;
+        contactInputs[1].classList.add("error");
+        emailError.textContent = "Please enter a valid email address.";
+    } else if (person.email.length < 2) {
+        containsErrors = true;
+        contactInputs[1].classList.add("error");
+        emailError.textContent = "Email is too short.";
+    } else {
+        contactInputs[1].classList.remove("error");
+        emailError.textContent = "";
+    }
 
-});
+    // 3. Validate Message
+    if (person.message.length < 2) {
+        containsErrors = true;
+        contactInputs[2].classList.add("error");
+        messageError.textContent = "Message must be at least 2 characters.";
+    } else {
+        contactInputs[2].classList.remove("error");
+        messageError.textContent = "";
+    }
+
+    // If no errors, pass the person object to addMessage
+    if (containsErrors === false) {
+        addMessage(person); // UPDATED: Passing the object
+
+// --- NEW: Call toggleModal ---
+            toggleModal(person);
+            // --- End of new call ---
+
+            // Clear inputs using the array
+            contactInputs[0].value = "";
+            contactInputs[1].value = "";
+            contactInputs[2].value = "";
+        }
+    }
+    // We are listening for the "click" event on the button itself.
+
+    const submitButton = document.getElementById("submit-button");
+    if (submitButton) {
+        submitButton.addEventListener("click", validateForm);
+    }
+
+    // --- NEW: Step 7 Event Listener ---
+    if (reduceMotionBtn) {
+        reduceMotionBtn.addEventListener("click", reduceMotion);
+    }
+
+    // --- NEW: Step 6 Event Listener ---
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", () => {
+            // Stop the animation
+            clearInterval(intervalId);
+            // Hide the modal immediately
+            modal.style.display = "none";
+        });
+    }
+
+}); // <-- This is the end of your file
