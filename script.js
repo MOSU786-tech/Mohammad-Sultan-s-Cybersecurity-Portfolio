@@ -1,19 +1,21 @@
-// Wait for the HTML document to be fully loaded before running the script
-document.addEventListener('DOMContentLoaded', function() {
-
-    // --- Image Gallery Logic (Existing Code) ---
-    const galleryImages = [
+const setupGallery = () => {
+    // --- Image Gallery Logic ---
+ const galleryImages = [
         { src: 'step1.jpg', caption: 'Step 1: Navigating to the platform-tools folder.' },
         { src: 'step7.jpg', caption: 'Step 7: The phone is soft-bricked and in recovery mode.' },
         { src: 'step10-7.jpg', caption: 'Step 10 Part 1: Running Kali NetHunter.' },
         { src: 'step10-9.jpg', caption: 'Step 10 Part 2: Running Kali NetHunter with root access.' },
         { src: 'pc-kex.jpg', caption: 'Final Step: Accessing the full Kali Desktop Experience on a PC via VNC.' }
-    ];
+    ]
+
+    // --- Image Gallery Logic (Existing Code) ---
+   
     const galleryImage = document.getElementById('galleryImage');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const galleryCaption = document.getElementById('galleryCaption');
     let currentIndex = 0;
+
     if (galleryImage && prevBtn && nextBtn && galleryCaption) {
         function showImage(index) {
             if (galleryImages[index] && galleryImages[index].src) {
@@ -34,9 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
             showImage(currentIndex);
         });
         showImage(currentIndex);
-    }
+    } 
+    
+    // 1. This closes the "if" statement
+}; // 📦 2. This completely closes the setupGallery box!
 
-    // --- Light Mode Toggle Logic (Existing Code) ---
+    const setupLightMode = () => {
+// --- Light Mode Toggle Logic (Existing Code) ---
+
     const themeButton = document.getElementById("theme-button");
     const modal = document.getElementById("success-modal");
 const reduceMotionBtn = document.getElementById("reduce-motion-btn");
@@ -57,11 +64,14 @@ let intervalId = null;
             themeButton.textContent = "Toggle Light Mode";
         }
     };
+
      if (themeButton) {
         themeButton.addEventListener("click", toggleLightMode);
     }
-    
-    // --- NEW: Stretch Goal (Step 4) - Initialize Counter ---
+    }
+const setupContactForm = () => {
+    // All the form and modal code will go here!
+        // --- NEW: Stretch Goal (Step 4) - Initialize Counter ---
     // Start count at 3 to match the default messages in the HTML
     let messageCount = 3;
     let defaultMessagesRemoved = false; // Flag to track if we've removed the defaults
@@ -235,5 +245,15 @@ const toggleModal = (person) => {
             modal.style.display = "none";
         });
     }
+ };
+ 
+ // Wait for the HTML document to be fully loaded before running the script
+ 
+document.addEventListener('DOMContentLoaded', function() {
 
-}); // <-- This is the end of your file
+setupGallery(); // 🟢 This is the "start button" that runs the Image Gallery
+setupLightMode (); // 🟢 This is the "start button" that runs ToggleModeLight!
+setupContactForm();// 🟢 This is the "start button" that runs the ContactFrom Modal and the rest!
+
+    }); 
+// <-- This is the end of your file 
