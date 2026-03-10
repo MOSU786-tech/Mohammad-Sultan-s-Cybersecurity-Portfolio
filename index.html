@@ -1,143 +1,320 @@
+﻿<!-- ============================================================
+     HTML5 BASICS GUIDE FOR PORTFOLIO
+     ============================================================ -->
+
+<!-- DOCTYPE Declaration - tells the browser this is HTML5 -->
 <!DOCTYPE html>
+
+<!-- Root html tag - wraps entire document -->
 <html>
     <head>
+        <!-- HEAD: Contains metadata, not visible on page -->
+        
+        <!-- Title - appears in browser tab -->
         <title>Mohammad Sultan</title>
+        
+        <!-- META TAGS: SEO & Social sharing optimization -->
+        <!-- Charset: UTF-8 for all language characters -->
+        <meta charset="UTF-8" />
+        
+        <!-- Viewport: Essential for mobile responsiveness -->
+        <!-- width=device-width ensures proper scaling on mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- SEO Meta Description: Shows in search results -->
+        <meta name="description" content="Mohammad Sultan - Aspiring Cybersecurity Analyst. Explore my projects on mobile pentesting, Kali NetHunter, and device security." />
+        
+        <!-- Keywords for search engines -->
+        <meta name="keywords" content="cybersecurity, pentesting, kali linux, security analyst, mobile security" />
+        
+        <!-- Author information -->
+        <meta name="author" content="Mohammad Sultan" />
+        
+        <!-- Open Graph: For social media sharing (LinkedIn, Facebook, etc) -->
+        <meta property="og:title" content="Mohammad Sultan - Cybersecurity Portfolio" />
+        <meta property="og:description" content="Aspiring Cybersecurity Analyst with expertise in mobile pentesting and device security." />
+        <meta property="og:type" content="website" />
+        <!-- Note: Add og:image later with your portfolio image URL -->
+        
+        <!-- Prefers color scheme: Respects system dark/light mode -->
+        <meta name="color-scheme" content="light dark" />
+        
+        <!-- CSS Stylesheet -->
         <link rel="stylesheet" href="styles.css" />
+        
+        <!-- Favicon: Icon in browser tab -->
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <!-- Script is now loaded at the end of the body -->
     </head>
     <body>
+        <!-- BODY: Contains all visible content on the page -->
 
-        <!-- Navbar Header -->
+        <!-- ============================================================
+             HEADER/NAVBAR SECTION: Navigation bar at top
+             ============================================================ -->
         <header class="navbar">
+            <!-- DIV: Container for brand/logo section -->
             <div class="navbar-brand">
+                <!-- A (Anchor): Hyperlink element -->
                 <a href="#">Mohammad Sultan</a>
+                <!-- "#" = link to same page (top) -->
             </div>
+            
+            <!-- NAV: Semantic tag for navigation links -->
             <nav class="navbar-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#connect">Contact</a>
-                <button id="theme-button">Toggle Light Mode</button>
-                <button id="reduce-motion-btn">Reduce Motion</button>
+                <!-- Anchor tags: Internal page navigation using IDs -->
+                <a href="#about" aria-label="Navigate to about section">About</a>      <!-- Links to id="about" -->
+                <a href="#projects" aria-label="Navigate to featured projects">Projects</a> <!-- Links to id="projects" -->
+                <a href="#connect" aria-label="Navigate to contact section">Contact</a>   <!-- Links to id="connect" -->
+                
+                <!-- BUTTON: Clickable element for interactive features -->
+                <!-- ARIA-LABEL: Describes button to screen readers -->
+                <button id="theme-button" aria-label="Toggle between light and dark mode">Toggle Light Mode</button>
+                <!-- ID: Unique identifier for JavaScript to find this element -->
+                
+                <button id="reduce-motion-btn" aria-label="Toggle reduced motion for animations">Reduce Motion</button>
             </nav>
         </header>
 
-        <!-- Main Content Area -->
+        <!-- ============================================================
+             MAIN CONTENT: Primary page content -->
         <main class="main-content">
+            <!-- MAIN: Semantic tag for primary document content -->
 
-            <!-- Intro Section -->
+            <!-- ============================================================
+                 HERO SECTION: Introduction area at top -->
             <div id="home" class="section hero">
+                <!-- ID: Unique identifier used for navigation links -->
+                <!-- CLASS: CSS styling hook, can be reused on multiple elements -->
+                
+                <!-- H2: Heading level 2 - subsection title -->
                 <h2>Aspiring Cybersecurity Analyst</h2>
+                
+                <!-- P: Paragraph text -->
                 <p>Passionate about defending digital infrastructure and solving complex security puzzles.</p>
             </div>
 
-            <!-- About Me Section -->
+            <!-- ============================================================
+                 ABOUT ME SECTION: Personal description -->
             <div id="about" class="section">
                 <h2>About Me</h2>
+                
+                <!-- Container for about content (image + text) -->
                 <div class="about-me-content">
+                    <!-- IMG tag: Embeds image file -->
+                    <!-- SRC: Source file path -->
+                    <!-- ALT: Alternative text if image doesn't load (accessibility) -->
                     <img src="logo.jpg" alt="Mohammad Sultan's personal logo" class="about-me-logo" />
+                    
+                    <!-- DIV: Generic container for grouping text -->
                     <div class="about-me-text">
-                         <p class="caption">A symbol of my dedication to protecting digital environments and solving complex security challenges.</p>
+                        <!-- SPAN: Inline text container for styling -->
+                        <p class="caption">A symbol of my dedication to protecting digital environments and solving complex security challenges.</p>
                         <p>My journey into technology was sparked by the rapid evolution of modern tech and its inherent security risks. I am a driven cybersecurity professional, motivated by a deep-seated desire to protect critical data and systems from emerging threats. My goal is to apply my analytical and problem-solving skills in a real-world Security Operations Center (SOC) environment.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Featured Project Section -->
+            <!-- ============================================================
+                 FEATURED PROJECTS SECTION -->
             <div id="projects" class="section">
                 <h2>Featured Project</h2>
+                
+                <!-- DIV with class for styling -->
                 <div class="project-box">
                     <h3>Mobile Pentesting Lab: A Tale of Two Devices</h3>
 
                     <h4>Part 1: The Stable Deployment (Samsung S20+)</h4>
                     <p>Successfully deployed a stable, rootless Kali NetHunter instance on the Samsung S20+ using Termux. This provided a flexible and discreet pentesting platform for analyzing network traffic and application security on the go. Watch the process below or download the full instructions.</p>
 
+                    <!-- ============================================================
+                         VIDEO CONTAINER: Responsive video embed -->
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/Lqu-G7sqClA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <!-- IFRAME: Embedded video player from YouTube -->
+                        <!-- SRC: URL to YouTube embed -->
+                        <!-- FRAMEBORDER: 0 means no border around video -->
+                        <iframe src="https://www.youtube.com/embed/Lqu-G7sqClA" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
                     </div>
-                    <a href="https://github.com/MOSU786-tech/Mohammad-Sultan-s-Cybersecurity-Portfolio/blob/main/Android%20Kali%20NetHunter%20Install%20-%20Android%2015.pdf" class="button" target="Download PDF Instructions">Download PDF Instructions</a>
+                    
+                    <!-- A: Hyperlink that opens in new tab (target="_blank") -->
+                    <a href="https://github.com/MOSU786-tech/Mohammad-Sultan-s-Cybersecurity-Portfolio/blob/main/Android%20Kali%20NetHunter%20Install%20-%20Android%2015.pdf" 
+                       class="button" 
+                       target="_blank">Download PDF Instructions</a>
 
+                    <!-- HR: Horizontal line separator -->
                     <hr class="project-divider">
 
                     <h4>Part 2: The Recovery Journey (OnePlus 8T)</h4>
                     <p>The attempt to install a full, rooted version of NetHunter on the OnePlus 8T evolved into an intensive, real-world lesson in device unbricking. Below is a gallery showcasing the key steps of the process, from initial setup to the challenges encountered.</p>
 
+                    <!-- ============================================================
+                         IMAGE GALLERY: Interactive image carousel -->
                     <div class="gallery-container">
-                        <img src="step1.jpg" alt="OnePlus 8T Project Image" class="gallery-image" id="galleryImage">
-                        <button class="gallery-btn prev-btn" id="prevBtn">&#10094;</button>
-                        <button class="gallery-btn next-btn" id="nextBtn">&#10095;</button>
+                        <!-- IMG: Gallery image (initial display) -->
+                        <img src="step1.jpg" 
+                             alt="OnePlus 8T Project Image" 
+                             class="gallery-image" 
+                             id="galleryImage">
+                        
+                        <!-- BUTTON: Previous/Next buttons for image navigation -->
+                        <!-- ID: Unique identifiers for JavaScript to find these buttons -->
+                        <button class="gallery-btn prev-btn" id="prevBtn" aria-label="View previous image">&#10094;</button>
+                        <!-- &#10094; = HTML entity for left arrow "◄" -->
+                        
+                        <button class="gallery-btn next-btn" id="nextBtn" aria-label="View next image">&#10095;</button>
+                        <!-- &#10095; = HTML entity for right arrow "►" -->
+                        
+                        <!-- P: Caption text below gallery image -->
                         <p class="gallery-caption" id="galleryCaption">Step 1: Navigating to the platform-tools folder.</p>
+                        
+                        <!-- ARIA-LIVE: Announce caption changes to screen readers -->
+                        <p class="sr-only" aria-live="polite" aria-atomic="true" id="galleryAnnounce"></p>
                     </div>
                 </div>
             </div>
 
-             <!-- Contact Links Section (Existing) -->
+            <!-- ============================================================
+                 CONTACT LINKS SECTION - Social media links -->
             <div id="connect" class="section links">
                 <div class="links-inner-box">
                     <h2>Let's Connect</h2>
                    
-                    <a href="feel free to send an email to > sultankoh@outlook.com" target="_blank">Email</a>
+                    <!-- External links that open in new tab -->
+                    <a href="mailto:sultankoh@outlook.com" target="_blank">Email</a>
                     <a href="https://www.linkedin.com/in/mohammad786sultan" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/MOSU786-tech/" target="View the Live Portfolio Here">GitHub</a>
+                    <a href="https://github.com/MOSU786-tech/" target="_blank">GitHub</a>
                 </div>
             </div>
 
-          <!-- NEW: Contact Form Section -->
+            <!-- ============================================================
+                 CONTACT FORM SECTION - Interactive form -->
             <div id="contact-form-section" class="section">
-                <h2>Let's Chat!</h2> <!-- Updated Heading -->
+                <h2>Let's Chat!</h2>
+                
+                <!-- Contact Container: Flex layout with two columns -->
                 <div class="contact-container">
+                    <!-- Left column: Introduction paragraph -->
                     <div class="contact-para">
                         <p>Interested in collaborating or have a question? Feel free to reach out using the form below. I'm always open to discussing cybersecurity, new technologies, or potential opportunities.</p>
                     </div>
+                    
+                    <!-- Right column: Message log display -->
                     <div class="message-log">
                         <h4>Message Log:</h4>
-                        <!-- UPDATED: Set initial count to 3 -->
+                        
+                        <!-- P tag with ID: JavaScript updates this counter -->
                         <p id="message-count">Total Messages: 3</p>
-                        <!-- UPDATED: Replaced placeholder with 3 default messages -->
+                        
+                        <!-- Default messages shown initially -->
+                        <!-- CLASS: "default-message" = targeted by JavaScript to remove these -->
                         <p class="default-message">💬 From Recruiter: "Great portfolio! Let's schedule an interview."</p>
                         <p class="default-message">💬 From Colleague: "Awesome project, really impressive write-up."</p>
                         <p class="default-message">💬 From Visitor: "Found your site, very impressive!"</p>
                     </div>
                 </div>
 
-                <!--- Contact Form --->
+                <!-- ============================================================
+                     FORM ELEMENTS: Input fields for user data -->
                 <div class="form-container">
-                    <form id="contact-form" title="contact-form">
-                        <!-- Step 2: Add form inputs -->
+                    <!-- FORM: Container for input elements -->
+                    <!-- ID: Unique identifier for JavaScript to target this form -->
+                    <form id="contact-form" title="contact-form" novalidate>
+                        <!-- novalidate: We do custom validation with JavaScript -->
+                        
+                        <!-- LABEL: Text label associated with input (accessibility) -->
+                        <!-- FOR attribute: connects to input ID -->
                         <label for="userName">Name:</label>
-                        <input type="text" id="userName" name="userName" required>
-                        <!-- NEW: Added span for Name error -->
-                        <span id="name-error" class="error-message"></span>
+                        
+                        <!-- INPUT: Text field for user name -->
+                        <!-- TYPE: What kind of input (text, email, number, etc.) -->
+                        <!-- ID: Unique identifier for form processing -->
+                        <!-- REQUIRED: Browser won't submit empty field -->
+                        <!-- ARIA-REQUIRED: Tell screen readers field is required -->
+                        <input type="text" 
+                               id="userName" 
+                               name="userName" 
+                               required
+                               aria-required="true"
+                               aria-describedby="name-error"
+                               placeholder="Enter your full name">
+                        
+                        <!-- SPAN: Error message container (shown if validation fails) -->
+                        <span id="name-error" class="error-message" role="alert"></span>
 
+                        <!-- Email input field -->
                         <label for="userEmail">Email:</label>
-                        <input type="email" id="userEmail" name="userEmail" required>
-                        <!-- Existing span for Email error -->
-                        <span id="email-error" class="error-message"></span>
+                        <input type="email" 
+                               id="userEmail" 
+                               name="userEmail" 
+                               required
+                               aria-required="true"
+                               aria-describedby="email-error"
+                               placeholder="your.email@example.com">
+                        <!-- TYPE="email": Browser validates email format -->
+                        
+                        <span id="email-error" class="error-message" role="alert"></span>
 
+                        <!-- TEXTAREA: Multi-line text input for messages -->
+                        <!-- ROWS: Number of visible text lines -->
                         <label for="userMessage">Message:</label>
-                        <textarea id="userMessage" name="userMessage" rows="4" required></textarea>
-                        <!-- NEW: Added span for Message error -->
-                        <span id="message-error" class="error-message"></span>
+                        <textarea id="userMessage" 
+                                  name="userMessage" 
+                                  rows="4" 
+                                  required
+                                  aria-required="true"
+                                  aria-describedby="message-error"
+                                  placeholder="Tell me about your inquiry..."></textarea>
+                        
+                        <span id="message-error" class="error-message" role="alert"></span>
                     </form>
-                    <!-- Submit button -->
-                    <button type="submit" form="contact-form" id="submit-button">Send Message</button>
+                    
+                    <!-- BUTTON: Submit form data -->
+                    <!-- TYPE="submit": Triggers form submission -->
+                    <!-- FORM attribute: Associates button with form ID -->
+                    <!-- ARIA-LABEL: Additional description for screen readers -->
+                    <button type="submit" 
+                            form="contact-form" 
+                            id="submit-button"
+                            aria-label="Submit contact form message">Send Message</button>
                 </div>
             </div>
-             <!-- End of NEW Contact Form Section -->
-<!-- SUCCESS MODAL -->
-<div id="success-modal" class="modal">
-    <div class="modal-container">
-        <div id="modal-item">
-            <p id="modal-text"></p>
-            <button id="close-modal-btn">Close</button>
-        </div>
-        <div id="modal-item">
-            <img id="modal-image" src="connect.jpg" alt="Success Image" />
-        </div>
-    </div>
-</div>
+
+            <!-- ============================================================
+                 SUCCESS MODAL: Popup shown after form submission -->
+            <div id="success-modal" class="modal">
+                <!-- DIV.modal-container: Flexbox container for modal content -->
+                <div class="modal-container">
+                    
+                    <!-- DIV.modal-item: Left side - success message -->
+                    <div id="modal-item">
+                        <!-- P: Message text (populated by JavaScript) -->
+                        <p id="modal-text"></p>
+                        
+                        <!-- BUTTON: Close modal popup -->
+                        <!-- ID: JavaScript finds and clicks this button -->
+                        <button id="close-modal-btn">Close</button>
+                    </div>
+                    
+                    <!-- DIV.modal-item: Right side - image -->
+                    <div id="modal-item">
+                        <!-- IMG: Image displayed in success modal -->
+                        <img id="modal-image" src="connect.jpg" alt="Success Image" />
+                    </div>
+                </div>
+            </div>
         </main>
-        <!-- Correct placement for the script link -->
+        <!-- END MAIN: Close the primary content section -->
+        
+        <!-- ============================================================
+             SCRIPT LOADING: JavaScript file loaded at end of body
+             BENEFIT: Ensures HTML loads before JavaScript runs
+             DEFER attribute: Script waits for HTML to load before executing
+             ============================================================ -->
         <script type="text/javascript" src="script.js" defer></script>
     </body>
+    <!-- END BODY: Close all body content -->
 </html>
+<!-- END HTML: Document complete -->

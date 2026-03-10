@@ -1,42 +1,85 @@
-/* Universal box-sizing and margin/padding reset for consistency */
+﻿/* ============================================================
+   CSS BASICS GUIDE FOR PORTFOLIO
+   ============================================================ */
+
+/* UNIVERSAL SELECTOR (*): Applies to ALL elements */
 * {
+    /* border-box: Includes padding & border in element width/height */
     box-sizing: border-box;
+    
+    /* Margin: Space OUTSIDE element (between elements) */
     margin: 0;
+    
+    /* Padding: Space INSIDE element (around content) */
     padding: 0;
 }
 
+/* HTML Root Element: Affects entire document */
 html {
     height: 100%;
+    /* smooth: Smooth scrolling animation when clicking anchor links */
     scroll-behavior: smooth;
 }
 
-/* --- Default (Dark) Mode Styles --- */
+/* ============================================================
+   DEFAULT (DARK) MODE STYLES - Initial page appearance
+   ============================================================ */
+
+/* BODY: Main page background and text styling */
 body {
+    /* min-height: Minimum 100% of viewport height (full screen) */
     min-height: 100vh;
+    
+    /* linear-gradient: Creates color gradient overlay for background image */
+    /* rgba(0,0,0,0.85): Black with 85% opacity = darker overlay */
     background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('hero-background.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
+    background-attachment: fixed;  /* Background stays fixed when scrolling */
+    background-size: cover;  /* Covers entire screen */
     background-color: white;
-    backface-visibility: visible;
+    
+    /* Font styling */
     font-family: 'Times New Roman', Times, serif;
-    color: aqua;
+    color: aqua;  /* Text color - aqua/cyan */
     font-size: 18px;
+    
+    /* text-shadow: Adds shadow to text for readability over background */
+    /* Syntax: offset-x offset-y blur-radius color */
     text-shadow: 1px 1px 3px #000;
+    
+    /* transition: Smooth color changes over 0.3 seconds */
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* ============================================================
+   NAVBAR: Navigation bar at top of page
+   ============================================================ */
+
 .navbar {
+    /* FLEXBOX: Modern layout system for aligning items */
     display: flex;
+    
+    /* space-between: Items push to opposite ends (logo left, nav right) */
     justify-content: space-between;
+    
+    /* center: Vertically align items in middle */
     align-items: center;
+    
+    /* Spacing inside navbar */
     padding: 15px 30px;
+    
+    /* Semi-transparent black background */
     background-color: rgba(0, 0, 0, 0.5);
+    
+    /* Border on bottom in light gray */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* STICKY: Navbar stays at top when scrolling */
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000;  /* Higher z-index = appears on top of other elements */
+    
     width: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-background.png');
     background-size: contain;
@@ -44,75 +87,107 @@ body {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
+/* Brand/Logo text in navbar */
 .navbar-brand a {
     color: white;
-    text-decoration: none;
+    text-decoration: none;  /* Remove underline from links */
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: bold;  /* Bold text */
 }
 
+/* Navigation links in navbar */
 .navbar-links a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 20px;  /* Space between links */
     font-size: 1.1em;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 5px;  /* Rounded corners */
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* HOVER: Style when mouse hovers over link */
 .navbar-links a:hover {
-    background-color: rgba(33, 235, 235, 0.289);
+    background-color: rgba(33, 235, 235, 0.289);  /* Light aqua background */
 }
 
+/* Theme toggle button styling */
 #theme-button {
     margin-left: 20px;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #ffffffb3;
+    background-color: #ffffffb3;  /* Semi-transparent white */
     color: black;
-    border: none;
-    cursor: pointer;
+    border: none;  /* Remove default button border */
+    cursor: pointer;  /* Hand cursor on hover */
     font-size: 1em;
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* ============================================================
+   MAIN CONTENT & SECTIONS: Central content layout
+   ============================================================ */
+
 .main-content {
+    /* Padding: Space inside the container */
     padding: 20px;
 }
 
+/* Hero section: Intro area with centered text */
 .hero {
     padding-top: 60px;
     text-align: center;
 }
 
+/* Generic section styling - reused for all sections */
 .section {
+    /* Vertical spacing between sections */
     margin-bottom: 60px;
     padding: 0 20px;
 }
 
+/* ============================================================
+   ABOUT ME SECTION: Layout for image + text
+   ============================================================ */
+
 .about-me-content {
+    /* FLEXBOX: Horizontal layout */
     display: flex;
+    
+    /* align-items: Vertically align items at top */
     align-items: flex-start;
+    
+    /* gap: Space between flex items */
     gap: 20px;
+    
     text-align: left;
 }
 
 .about-me-logo {
     width: 150px;
+    /* mask-image: Creates circular mask (gradient shape) */
+    /* Circle center is solid (gray), edges transparent */
     mask-image: radial-gradient(circle, gray 40%, transparent 95%);
 }
 
 .about-me-text {
+    /* flex: 1 means this takes remaining space */
     flex: 1;
 }
+
+/* ============================================================
+   PROJECT BOX: Container for project information
+   ============================================================ */
 
 .project-box {
     padding: 20px 30px;
     margin: 20px 0;
+    
+    /* border: 1px solid line with semi-transparent white */
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    background-color: rgba(0,0,0,0.5);
+    
+    border-radius: 15px;  /* Rounded corners */
+    background-color: rgba(0,0,0,0.5);  /* Semi-transparent black */
     text-align: left;
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
@@ -120,7 +195,7 @@ body {
 .project-box h3, .project-box h4 {
     text-align: center;
     margin-bottom: 15px;
-    color: #ADD8E6;
+    color: #ADD8E6;  /* Light blue color */
     transition: color 0.3s;
 }
 
@@ -129,6 +204,7 @@ body {
 }
 
 .project-box p {
+    /* line-height: Space between lines of text */
     line-height: 1.6;
 }
 
@@ -138,9 +214,16 @@ body {
     transition: border-color 0.3s;
 }
 
+/* ============================================================
+   VIDEO & GALLERY: Responsive media containers
+   ============================================================ */
+
+/* Responsive video container (maintains aspect ratio) */
 .video-container {
     position: relative;
     width: 100%;
+    /* padding-bottom: Creates space for video (16:9 aspect ratio) */
+    /* Formula: 9÷16 = 0.5625 = 56.25% */
     padding-bottom: 56.25%;
     height: 0;
     margin: 20px 0;
@@ -154,6 +237,7 @@ body {
     height: 100%;
 }
 
+/* Gallery container for image carousel */
 .gallery-container {
     position: relative;
     max-width: 800px;
@@ -165,10 +249,11 @@ body {
     border-radius: 10px;
 }
 
+/* Gallery navigation buttons */
 .gallery-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 50%;  /* Vertically center */
+    transform: translateY(-50%);  /* Adjust for button height */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
@@ -178,8 +263,8 @@ body {
     border-radius: 5px;
 }
 
-.prev-btn { left: 10px; }
-.next-btn { right: 10px; }
+.prev-btn { left: 10px; }   /* Left button position */
+.next-btn { right: 10px; }  /* Right button position */
 
 .gallery-caption {
     text-align: center;
@@ -194,7 +279,12 @@ body {
     display: block;
 }
 
-.button { /* General style for link buttons */
+/* ============================================================
+   BUTTONS & LINKS: Interactive elements
+   ============================================================ */
+
+/* General style for link buttons (download, action buttons) */
+.button {
     background-color: aquamarine;
     color: rgb(5, 5, 5);
     border: none;
@@ -204,13 +294,17 @@ body {
     margin-top: 10px;
     font-size: 16px;
     text-decoration: none;
-    display: inline-block;
+    display: inline-block;  /* Allows padding to work on links */
     transition: background-color 0.03s, color 0.03s;
 }
 
 .button:hover {
-    background-color:aqua;
+    background-color: aqua;  /* Lighter on hover */
 }
+
+/* ============================================================
+   SOCIAL LINKS & CONTACT SECTION
+   ============================================================ */
 
 .links-inner-box {
     max-width: 400px;
@@ -219,16 +313,17 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     background-image: url('connect.jpg');
+    /* mask-image: Creates circular fade effect (center solid, edges transparent) */
     mask-image: radial-gradient(circle, black 45%, transparent 110%);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
     transition: border-color 0.3s;
-    text-align: center; /* This is the new line to center the text */
+    text-align: center;
 }
 
 .links a {
-    color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 98%);  /* Almost white */
     text-decoration: none;
     margin: 0 20px;
     font-size: 1.2em;
@@ -236,13 +331,16 @@ body {
 }
 
 .links a:hover {
-    text-decoration: underline;
+    text-decoration: underline;  /* Underline on hover */
 }
 
-/* --- Contact Form Section (Adapted from RSVP) --- */
+/* ============================================================
+   CONTACT FORM SECTION: Form layout and styling
+   ============================================================ */
+
 .contact-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;  /* Horizontal layout */
     gap: 20px;
     width: 100%;
     padding-bottom: 50px;
@@ -250,18 +348,19 @@ body {
 }
 
 .contact-para {
-    width: 55%;
+    width: 55%;  /* Left column width */
     padding-right: 10px;
 }
 
+/* Message log display area */
 .message-log {
-    width: 45%;
+    width: 45%;  /* Right column width */
     padding: 15px;
-    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.3);  /* Dashed border */
     border-radius: 8px;
     min-height: 100px;
     max-height: 250px;
-    overflow-y: auto;
+    overflow-y: auto;  /* Scrollbar if content overflows */
 }
 
 .message-log h4 {
@@ -269,10 +368,10 @@ body {
     color: #ADD8E6;
 }
 
-/* Style for the default messages */
+/* Style for default placeholder messages */
 .default-message {
     font-style: italic;
-    color: #aaa; /* A lighter gray to look like placeholder text */
+    color: #aaa;  /* Light gray = placeholder appearance */
     margin-bottom: 5px;
 }
 
@@ -280,9 +379,10 @@ body {
     margin-top: 30px;
 }
 
+/* FORM: Container for input elements */
 #contact-form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  /* Stack inputs vertically */
     gap: 15px;
     max-width: 600px;
     margin: 0 auto 20px auto;
@@ -294,6 +394,7 @@ body {
     font-weight: bold;
 }
 
+/* Style for all text/email/textarea inputs */
 #contact-form input[type="text"],
 #contact-form input[type="email"],
 #contact-form textarea {
@@ -301,11 +402,12 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1em;
-    background-color: #7f8181;
+    background-color: #7f8181;  /* Gray background */
     color: white;
     transition: border-color 0.3s, background-color 0.3s;
 }
 
+/* Submit button styling */
 #submit-button {
     background-color: aquamarine;
     color: rgb(5, 5, 5);
@@ -315,92 +417,81 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    align-self: center;
+    align-self: center;  /* Center the button */
 }
 
 #submit-button:hover {
-    background-color:aqua;
+    background-color: aqua;
 }
 
-/* --- Style for the custom error message --- */
+/* ============================================================
+   ERROR MESSAGES: Validation feedback styling
+   ============================================================ */
+
+/* Style for error message text under inputs */
 .error-message {
-    color: #FF6B6B; /* A bright, visible red */
+    color: #FF6B6B;  /* Bright red */
     font-size: 0.9em;
     font-style: italic;
-    /* Negative margin pulls it closer to the input box above it */
-    margin-top: -10px; 
+    margin-top: -10px;  /* Negative margin pulls closer to input */
     margin-bottom: 5px;
-    display: block; /* Ensures it sits on its own line */
+    display: block;
 }
 
-/* --- Form Validation Styling --- */
+/* Input field with error state */
 .error {
-  border-color: red !important; /* Use !important to override other border styles */
-  background-color: red !important; /* Full red background */
-  color: rgb(222, 11, 11) !important; /* Ensure text is white and readable */
+  border-color: red !important;  /* !important overrides other styles */
+  background-color: red !important;
+  color: rgb(222, 11, 11) !important;
 }
-/* --- End of Contact Form Section Styles --- */
 
-/* --- the main challenge--- */
+/* ============================================================
+   SUCCESS MODAL: Popup overlay shown after form submission
+   ============================================================ */
 
+/* Modal background overlay */
 #success-modal {
-    display: none; 
-    position: fixed;
+    display: none;  /* Hidden by default */
+    position: fixed;  /* Stays in viewport when scrolling */
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.6);
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background: rgba(0,0,0,0.6);  /* Semi-transparent dark overlay */
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9999;  /* Highest z-index = appears on top */
 }
 
-.modal-item {
-/* Style individual elements within the modal */
-    flex: 1; /* Make items share the space equally */
-    padding: 10px;
-}
-/* --- Light Mode Styles --- */
-
-/* Style for the image in the modal */
-#modal-image {
-    width: 150px; /* Adjust as needed */
-    height: auto;
-}
-
+/* Modal content container */
 .modal-container {
-/* Change modal size and spacing here */
-     padding: 50px;
-     width: 55%;
-
-     /* customize modal style here */
-     background-color: lightsteelblue;
-     color: black;
-     text-align: center;
-     font-size: 1rem;
-     font-family: monospace;
-     border-radius: 15px; /* Added a radius to match your site's style */
-
-/* Use flexbox to customize .modal-item Layout */
-     display: flex;
-     align-items: center; /* Vertically center the text and image */
+    padding: 50px;
+    width: 55%;
+    background-color: lightsteelblue;
+    color: black;
+    text-align: center;
+    font-size: 1rem;
+    font-family: monospace;
+    border-radius: 15px;
+    
+    /* Use flexbox to layout content */
+    display: flex;
+    align-items: center;  /* Vertically center content */
 }
 
+/* Individual items inside modal (text and image) */
 .modal-item {
-/* Style individual elements within the modal */
-    flex: 1; /* Make items share the space equally */
+    flex: 1;  /* Share space equally */
     padding: 10px;
 }
-/* Style for the image in the modal */
+
+/* Image in modal */
 #modal-image {
-    width: 150px; /* Adjust as needed */
+    width: 150px;
     height: auto;
 }
-/* --- End of Success Modal Styles --- */
 
-/* --- NEW: Step 6 Modal Button Style --- */
-
+/* Close button styling */
 #close-modal-btn {
     background-color: rgba(0, 0, 0, 0.2);
     color: black;
@@ -410,33 +501,35 @@ body {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
-    margin-top: 20px; /* Add space above the button */
+    margin-top: 20px;
 }
 
 #close-modal-btn:hover {
     background-color: rgba(138, 201, 212, 0.4);
 }
 
-/* --- End of Success Modal Styles --- */
+/* ============================================================
+   LIGHT MODE: Alternative color scheme (toggle-able)
+   ============================================================ */
 
-/* --- Light Mode Styles --- */
-
+/* Light mode for body */
 body.light-mode {
     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('hero-background.jpg');
-    background-color: #f0f0f0;
-    color: #333;
-    text-shadow: none;
+    background-color: #f0f0f0;  /* Light gray background */
+    color: #333;  /* Dark text for readability */
+    text-shadow: none;  /* No shadow needed in light mode */
 }
 
+/* Light mode for navbar */
 .light-mode .navbar {
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(240, 240, 240, 0.9);  /* Light background */
     border-bottom-color: rgba(0, 0, 0, 0.2);
     background-image: none;
 }
 
 .light-mode .navbar-brand a,
 .light-mode .navbar-links a {
-    color: #333;
+    color: #333;  /* Dark text */
 }
 
 .light-mode .navbar-links a:hover {
@@ -448,15 +541,16 @@ body.light-mode {
     color: white;
 }
 
+/* Light mode for project boxes */
 .light-mode .project-box {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);  /* Light white background */
     border-color: rgba(0, 0, 0, 0.2);
-    color: #333;
+    color: #333;  /* Dark text */
 }
 
 .light-mode .project-box h3,
 .light-mode .project-box h4 {
-    color: #0056b3;
+    color: #0056b3;  /* Blue headings */
 }
 
 .light-mode .project-divider {
@@ -468,22 +562,23 @@ body.light-mode {
 }
 
 .light-mode .links a {
-     color: #006400;
+     color: #006400;  /* Dark green links */
 }
 
 .light-mode .caption {
     color: #555;
 }
 
-.light-mode .button { /* Style for link buttons */
+.light-mode .button {
      background-color: #007bff;
      color: white;
 }
+
 .light-mode .button:hover {
      background-color: #0056b3;
 }
 
-/* Light mode for Contact Form Section */
+/* Light mode for contact form section */
 .light-mode #contact-form-section h2 {
     color: #333;
 }
@@ -496,6 +591,327 @@ body.light-mode {
     border-color: rgba(0, 0, 0, 0.3);
     background-color: #f9f9f9;
     color: #333;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN: Mobile-first media queries
+   ============================================================ */
+
+/* TABLETS: 768px and smaller */
+@media (max-width: 768px) {
+    /* Navbar adjustments for mobile */
+    .navbar {
+        flex-direction: column;  /* Stack navbar items vertically */
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .navbar-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .navbar-links a,
+    #theme-button,
+    #reduce-motion-btn {
+        width: 100%;
+        text-align: center;
+        padding: 8px 5px;
+        margin-left: 0;
+    }
+    
+    /* Contact form layout adjustment */
+    .contact-container {
+        flex-direction: column;  /* Stack columns vertically */
+        gap: 15px;
+    }
+    
+    .contact-para {
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    .message-log {
+        width: 100%;
+        max-height: 200px;
+    }
+    
+    /* Modal adjustments */
+    .modal-container {
+        width: 85%;
+        padding: 30px;
+        flex-direction: column;  /* Stack content vertically */
+    }
+    
+    /* Project box padding */
+    .project-box {
+        padding: 15px 20px;
+    }
+    
+    /* About me content stack */
+    .about-me-content {
+        flex-direction: column;  /* Image above text */
+        align-items: center;
+    }
+    
+    .about-me-logo {
+        width: 120px;
+    }
+    
+    .about-me-text {
+        text-align: center;
+    }
+    
+    /* Reduce main content padding */
+    .main-content {
+        padding: 10px;
+    }
+    
+    .section {
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+    
+    .hero {
+        padding-top: 30px;
+    }
+    
+    /* Button sizing for mobile */
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Form full width on mobile */
+    #contact-form {
+        max-width: 100%;
+    }
+    
+    #submit-button {
+        width: 100%;
+        padding: 12px 15px;
+    }
+}
+
+/* MOBILE PHONES: 480px and smaller */
+@media (max-width: 480px) {
+    /* Body font size reduction */
+    body {
+        font-size: 16px;
+    }
+    
+    .navbar-brand a {
+        font-size: 1.2em;
+    }
+    
+    .navbar-links a {
+        font-size: 0.9em;
+    }
+    
+    /* Heading sizes */
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    h3 {
+        font-size: 1.2em;
+    }
+    
+    h4 {
+        font-size: 1.1em;
+    }
+    
+    /* Gallery buttons smaller */
+    .gallery-btn {
+        padding: 8px 12px;
+        font-size: 20px;
+    }
+    
+    /* Links spacing */
+    .links a {
+        margin: 0 10px;
+        font-size: 1em;
+    }
+    
+    /* Form label styling */
+    #contact-form label {
+        font-size: 0.95em;
+    }
+    
+    #contact-form input,
+    #contact-form textarea {
+        font-size: 16px;  /* Prevents zoom on iPhone */
+        padding: 8px;
+    }
+    
+    /* Modal mobile sizing */
+    .modal-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    #modal-image {
+        width: 100px;
+    }
+    
+    .modal-item {
+        padding: 5px;
+    }
+}
+
+/* ============================================================
+   ACCESSIBILITY IMPROVEMENTS: Focus states & keyboard navigation
+   ============================================================ */
+
+/* Focus states for keyboard navigation (Tab key) */
+.navbar-links a:focus,
+#theme-button:focus,
+#reduce-motion-btn:focus,
+.button:focus,
+.gallery-btn:focus,
+.links a:focus,
+#contact-form input:focus,
+#contact-form textarea:focus,
+#submit-button:focus {
+    /* Bright outline for visibility */
+    outline: 2px solid #FFD700;  /* Gold outline */
+    outline-offset: 2px;
+}
+
+/* Improved button transitions & hover states */
+#theme-button,
+#reduce-motion-btn,
+.button,
+#submit-button,
+.gallery-btn {
+    /* Add slight shadow on hover for depth */
+    transition: all 0.3s ease;
+}
+
+#theme-button:hover,
+#reduce-motion-btn:hover {
+    transform: translateY(-2px);  /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* Better link hover states */
+.links a:hover,
+.navbar-links a:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Focus state for form inputs */
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: 2px solid aqua;
+    outline-offset: -2px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* Loading state for submit button (optional class) */
+#submit-button.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+#submit-button.loading::after {
+    content: " ...";
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0%, 20% {
+        content: " .";
+    }
+    40% {
+        content: " ..";
+    }
+    60% {
+        content: " ...";
+    }
+}
+
+/* ============================================================
+   ACCESSIBILITY: Screen reader only content
+   ============================================================ */
+
+/* sr-only: Content visible only to screen readers, not on visual display */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================================
+   SMOOTH ANIMATIONS: Polish and visual feedback
+   ============================================================ */
+
+/* Smooth fade-in animation for page elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply subtle animations to sections */
+.section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Gallery image smooth transitions */
+.gallery-image {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Navbar link smooth transitions */
+.navbar-links a,
+#theme-button,
+#reduce-motion-btn {
+    transition: all 0.3s ease;
+}
+
+/* Button hover animations */
+.button,
+#submit-button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Error input smooth transition */
+#contact-form input,
+#contact-form textarea {
+    transition: all 0.3s ease;
 }
 
 .light-mode .message-log h4 {
